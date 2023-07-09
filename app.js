@@ -11,8 +11,6 @@ const cors=require('cors');
 app.use(cors());
 const sequelize=require('./util/database');
 // using helmetfor secure response headers
-const helmet=require('helmet');
-const morgan=require('morgan');
 
 // flags:'a' to make sure that logs are appended and not overwritten
 const accessLogStream=fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'});
