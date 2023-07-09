@@ -37,7 +37,7 @@ exports.passwordReset = async (req, res, next) => {
             to: email,
             subject: 'Password Reset',
             text: `This is your link to change the password 🔑🔗
-                http://localhost:3000/password/resetPassword/${uuid}`
+                http://16.170.25.230:3000/password/resetPassword/${uuid}`
         };
 
         if(userId){
@@ -72,7 +72,7 @@ exports.getPassword = async (req, res, next) => {
                         console.log('User exists');
                         // console.log(__dirname);
                         res.sendFile(path.join(__dirname,'..','views/password-form.html'));
-                        // return res.redirect("localhost:3000/password-form.html");
+                        // return res.redirect("16.170.25.230:3000/password-form.html");
                     }
                     else {
                         res.json({ "result": "Request is inactive" })
