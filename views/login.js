@@ -31,7 +31,7 @@ async function login(e) {
             "password": password
         }
         
-        await axios.post('http://16.171.160.229:3000/users/user-login', credentials)
+        await axios.post('http://16.171.155.148:3000/users/user-login', credentials)
             .then(response => {
                 localStorage.setItem('token', response.data.token);
                 window.location.href = 'expense-main.html';
