@@ -25,7 +25,7 @@ async function addExpense(e) {
             'category': category,
         };
         console.log(data);
-        const res = await axios.post('http://16.171.155.148:3000/expense/post-expense', data, { headers: { "Authorization": token } });
+        const res = await axios.post('http://13.51.197.27:3000/expense/post-expense', data, { headers: { "Authorization": token } });
         window.location.reload();
     }
     catch (err) {
@@ -45,7 +45,7 @@ async function addSalary(e) {
             'category': category,
         };
         const token = localStorage.getItem('token');
-        const res = await axios.post('http://16.171.155.148:3000/expense/post-salary', data, { headers: { "Authorization": token } });
+        const res = await axios.post('http://13.51.197.27:3000/expense/post-salary', data, { headers: { "Authorization": token } });
         console.log(res.data.resData);
         window.location.reload();
     }
@@ -60,20 +60,20 @@ document.getElementById('razorpayBtn').onclick = async function (e) {
     try {
         e.preventDefault();
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://16.171.155.148:3000/purchase/premiumMembership', { headers: { "Authorization": token } });
+        const response = await axios.get('http://13.51.197.27:3000/purchase/premiumMembership', { headers: { "Authorization": token } });
 
         var options = {
             "key": response.data.key_id,//key id generated from the dashboard
             "order_id": response.data.order.id,//order id for a particular order
             "handler": async function (response) {
-                await axios.post('http://16.171.155.148:3000/purchase/updateTransactionStatus', {
+                await axios.post('http://13.51.197.27:3000/purchase/updateTransactionStatus', {
                     order_id: options.order_id,
                     payment_id: response.razorpay_payment_id
                 }, { headers: { "Authorization": token } });
 
                 alert("You are a premium user now");
 
-                const res = await axios.post('http://16.171.155.148:3000/users/updateToken', '', { headers: { "Authorization": token } });
+                const res = await axios.post('http://13.51.197.27:3000/users/updateToken', '', { headers: { "Authorization": token } });
                 localStorage.setItem('token', res.data.token);
                 window.location.reload();
             }
@@ -104,7 +104,7 @@ function comparator(x, y) {
 // document.addEventListener('DOMContentLoaded', async () => {
 //     try {
 //         const token = localStorage.getItem('token');
-//         const response = await axios.get('http://16.171.155.148:3000/purchase/premiumOrNot', { headers: { "Authorization": token } });
+//         const response = await axios.get('http://13.51.197.27:3000/purchase/premiumOrNot', { headers: { "Authorization": token } });
 //         const isPremium = response.data.isPremium;
 
 //         if (isPremium === 'true') {
@@ -117,7 +117,7 @@ function comparator(x, y) {
 //             boardButton.onclick = async function (e) {
 
 //                 e.preventDefault();
-//                 const res = await axios.get('http://16.171.155.148:3000/premium/getLeaderboard', { headers: { "Authorization": token } });
+//                 const res = await axios.get('http://13.51.197.27:3000/premium/getLeaderboard', { headers: { "Authorization": token } });
 //                 const data = res.data.resData;
 
 //                 const heading = document.createElement('h2');
@@ -145,7 +145,7 @@ function comparator(x, y) {
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         // Every time the server restarts, the backend might not be available, so we are just giving time for backend to start properly
-        const response = await axios.get('http://16.171.155.148:3000/purchase/premiumOrNot', { headers: { "Authorization": token } });
+        const response = await axios.get('http://13.51.197.27:3000/purchase/premiumOrNot', { headers: { "Authorization": token } });
         const isPremium = response.data.isPremium;
         if (isPremium === 'true') {
             razorpayBtn.innerHTML = 'Premium User 👑';
@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 e.preventDefault();
                 leaderboardTable.style.visibility = 'visible';
-                const res = await axios.get('http://16.171.155.148:3000/premium/getLeaderboard', { headers: { "Authorization": token } });
+                const res = await axios.get('http://13.51.197.27:3000/premium/getLeaderboard', { headers: { "Authorization": token } });
                 const data = res.data.resData;
 
                 leaderboardHeading.appendChild(document.createTextNode('Leaderboard'));

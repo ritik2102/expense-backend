@@ -10,7 +10,7 @@ recoverButton.onclick = async (e) => {
         const data = {
             "email": email
         }
-        const res = await axios.post('http://16.171.155.148:3000/password/forgotPassword', data);
+        const res = await axios.post('http://13.51.197.27:3000/password/forgotPassword', data);
         const result = res.data.success;
         console.log(result);
         if (result === true) {
